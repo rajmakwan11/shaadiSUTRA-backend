@@ -19,9 +19,20 @@ app.use(express.json());
 app.use(cookieParser())
 
 app.use(cors({
-  origin: process.env.CLIENT_URL,
-  credentials: true, // allow cookies (important!)
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+
+    // allow your main production domain
+    if (origin === process.env.CLIENT_URL) return callback(null, true);
+
+    // allow any vercel preview
+    if (/\.vercel\.app$/.test(origin)) return callback(null, true);
+
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true
 }));
+
 
 
 
