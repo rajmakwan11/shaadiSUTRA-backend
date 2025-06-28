@@ -5,11 +5,14 @@ const displayAllTemplate = async (req, res) => {
     const getTemplates = await Templates.find({});
 
     const templatesWithFullUrl = getTemplates.map(template => {
-      const newImage = template.image.replace(
-        "http://localhost:3000",
-        process.env.BACKEND_URL
-      );
-      return { ...template._doc, image: newImage };
+      let imageUrl = template.image;
+
+      if (!/^https?:\/\//i.test(imageUrl)) {
+        // If it doesn't already start with http:// or https://
+        imageUrl = `${process.env.BACKEND_URL}${imageUrl}`;
+      }
+
+      return { ...template._doc, image: imageUrl };
     });
 
     res.send(templatesWithFullUrl);
@@ -20,4 +23,3 @@ const displayAllTemplate = async (req, res) => {
 };
 
 module.exports = displayAllTemplate;
-    
