@@ -74,7 +74,7 @@ const login = async(req,res)=>{
         const token = jwt.sign({_id:user._id, email:email, role:user.role} ,process.env.JWT_KEY, {expiresIn:60*60});
         
         //set this jwt token in cookie
-        res.cookie('token',token, {maxAge:60*60*1000})
+        res.cookie('token',token, {maxAge:60*60*1000,sameSite: "None",secure: true})
 
         res.status(200).send("User Logged-in Successfully");
         
@@ -116,8 +116,8 @@ const verifyOTP = async (req, res) => {
   res.cookie("token", token, {
     maxAge: 60 * 60 * 1000, // 1 hour
     httpOnly: true,
-    sameSite: "Lax",
-    secure: false, // set to true in production with HTTPS
+    sameSite: "None",
+    secure: true, // set to true in production with HTTPS
   });
 
   // ✅ Done
