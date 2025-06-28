@@ -1,0 +1,15 @@
+2025/06/28-20:20:33.824 40fc Reusing MANIFEST C:\Users\Raj\OneDrive\Desktop\shaadiSUTRA 1\backend\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
+2025/06/28-20:20:33.825 40fc Recovering log #16
+2025/06/28-20:20:33.833 40fc Reusing old log C:\Users\Raj\OneDrive\Desktop\shaadiSUTRA 1\backend\.wwebjs_auth\session\Default\Local Storage\leveldb/000016.log 
+2025/06/28-20:27:56.100 2098 Level-0 table #20: started
+2025/06/28-20:27:56.107 2098 Level-0 table #20: 15973 bytes OK
+2025/06/28-20:27:56.110 2098 Delete type=0 #16
+2025/06/28-20:27:56.111 2098 Compacting 4@0 + 1@1 files
+2025/06/28-20:27:56.116 2098 Generated table #21@0: 158 keys, 5181 bytes
+2025/06/28-20:27:56.116 2098 Compacted 4@0 + 1@1 files => 5181 bytes
+2025/06/28-20:27:56.118 2098 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/06/28-20:27:56.119 2098 Delete type=2 #8
+2025/06/28-20:27:56.119 2098 Delete type=2 #11
+2025/06/28-20:27:56.119 2098 Delete type=2 #14
+2025/06/28-20:27:56.119 2098 Delete type=2 #17
+2025/06/28-20:27:56.119 2098 Delete type=2 #20

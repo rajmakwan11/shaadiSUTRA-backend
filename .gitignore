@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+
+# Environment variables
+.env
+
+# Mac system files
+.DS_Store
+
+# npm debug files
+npm-debug.log*
+
+# Vercel local files
+.vercel
+
+# Coverage reports
+coverage
+
+
