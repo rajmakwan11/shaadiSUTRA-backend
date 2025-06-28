@@ -5,11 +5,20 @@ const displayAllTemplate = async (req, res) => {
     const getTemplates = await Templates.find({});
 
     const templatesWithFullUrl = getTemplates.map(template => {
-      const newImage = template.image.replace(
-        "http://localhost:3000",
-        process.env.BACKEND_URL
-      );
-      return { ...template._doc, image: newImage };
+      let imageUrl = template.image;
+
+      if (imageUrl.startsWith("/")) {
+        // Relative path in DB → make it full
+        imageUrl = process.env.BACKEND_URL + imageUrl;
+      } else if (imageUrl.startsWith("http://localhost:3000")) {
+        // Old localhost path → replace with deployed
+        imageUrl = imageUrl.replace(
+          "http://localhost:3000",
+          process.env.BACKEND_URL
+        );
+      }
+
+      return { ...template._doc, image: imageUrl };
     });
 
     res.send(templatesWithFullUrl);
