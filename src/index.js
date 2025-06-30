@@ -14,6 +14,7 @@ const authenticate = require("./middleware/auth");
 const formSubmission = require("./models/formSubmission")
 const sendInvitations  = require("./controllers/sendInvitations");
 const Templates = require("./models/templates");
+const fs = require('fs');
 
 app.use(express.json());
 app.use(cookieParser())
@@ -53,6 +54,25 @@ app.get("/form/:formId", authenticate, async (req, res) => {
   const form = await formSubmission.findById(req.params.formId);
   if (!form) return res.status(404).json({ message: "Form not found" });
   res.json(form);
+});
+
+// 🧹 TEMPORARY CLEANUP ROUTE
+app.delete("/admin/cleanup-invitations", (req, res) => {
+  const folder = path.join(__dirname, "..", "invitations");
+
+  fs.readdir(folder, (err, files) => {
+    if (err) {
+      console.error("❌ Error reading invitations folder:", err);
+      return res.status(500).send("Error reading folder");
+    }
+
+    for (const file of files) {
+      fs.unlinkSync(path.join(folder, file));
+    }
+
+    console.log("✅ All invitation images deleted.");
+    res.send("✅ All invitation images deleted.");
+  });
 });
 
 
