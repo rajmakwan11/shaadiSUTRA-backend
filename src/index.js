@@ -56,24 +56,6 @@ app.get("/form/:formId", authenticate, async (req, res) => {
   res.json(form);
 });
 
-// 🧹 TEMPORARY CLEANUP ROUTE
-app.delete("/admin/cleanup-invitations", (req, res) => {
-  const folder = path.join(__dirname, "..", "invitations");
-
-  fs.readdir(folder, (err, files) => {
-    if (err) {
-      console.error("❌ Error reading invitations folder:", err);
-      return res.status(500).send("Error reading folder");
-    }
-
-    for (const file of files) {
-      fs.unlinkSync(path.join(folder, file));
-    }
-
-    console.log("✅ All invitation images deleted.");
-    res.send("✅ All invitation images deleted.");
-  });
-});
 
 main()
     .then(async () => {
